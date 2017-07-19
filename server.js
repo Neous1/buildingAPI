@@ -15,8 +15,10 @@ app.use(express.static("website"));
 // interaction
 //Get request
 
-app.get('/flower', sendFlower);
+app.get('/search/:flower', sendFlower);// "colon" indicates that "search" is the route and what follows is given by the user
+
 
 function sendFlower(request, response){
-    response.send("I love flowers too");
+    var data = request.params;
+    response.send("I love " + data.flower + " too");
 }
