@@ -20,5 +20,5 @@ app.get('/search/:flower', sendFlower);// "colon" indicates that "search" is the
 
 function sendFlower(request, response){
     var data = request.params;
-    response.send("I love " + data.flower + " too");
+    response.send("I love " + data.flower + " too"); // flower is what the user entered to search per the app get param
 }
