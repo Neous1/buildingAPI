@@ -1,7 +1,8 @@
 var words = {
     "rainbow": 5,
     "unicorn": 3,
-    "doom": -3
+    "doom": -3,
+    "gloom": -2
 }
 console.log("server is starting");
 
@@ -20,15 +21,24 @@ app.use(express.static("website"));
 // interaction
 //Get request
 
-app.get('/search/:flower/:num', sendFlower);// "colon" indicates that "search" is the route and what follows is given by the user
+app.get('/add/:word/:score', addWord);// "colon" indicates that "add" is the route and what follows is given by the user
 
 
-function sendFlower(request, response){
+function addWord(request, response){
     var data = request.params;
-    var num = data.num;
-    var reply = "";
-    for (var i = 0; i< num ; i++){
-        reply += "I love " + data.flower + " too ";
+    var word = data.word;
+    var score = data.score;
+
+    words[word]=score;
+
+    var reply = {
+        msg: "Thank you for your word."
     }
-    response.send(reply); // flower is what the user entered to search per the app get param
+
+    response.send(reply)
 }
+
+ app.get("/all", sendall);
+ function sendall(request, response){
+     response.send(words)
+ }
