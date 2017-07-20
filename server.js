@@ -31,6 +31,7 @@ function addWord(request, response){
          reply={
             msg: "Score is required."
         }
+        response.send(reply)
     }else{
     words[word]=score;
     var data =JSON.stringify(words, null, 2)
@@ -38,14 +39,18 @@ function addWord(request, response){
 
     function finished(err){
         console.log("all set.");
+        reply = {
+            word: word,
+            score: score,
+            status: "success"
+        }
+        response.send(reply)
     }
-         reply = {
-        msg: "Thank you for your word."
-    }
+
     }
 
 
-    response.send(reply)
+
 }
 
  app.get("/all", sendAll);
@@ -56,7 +61,7 @@ function addWord(request, response){
  // SEARCH 
  app.get("/search/:word/", searchWord);
 
- function searchWord(request, response){
+function searchWord(request, response){
      var word = request.params.word;
      var reply;
      if (words[word]){
