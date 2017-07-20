@@ -1,9 +1,7 @@
-var words = {
-    "rainbow": 5,
-    "unicorn": 3,
-    "doom": -3,
-    "gloom": -2
-}
+var fs = require("fs")
+var words = fs.readFileSync("words.json");
+console.log(words);
+
 console.log("server is starting");
 
 var express = require("express");
