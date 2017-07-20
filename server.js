@@ -21,19 +21,27 @@ app.use(express.static("website"));
 // interaction
 //Get request
 
-app.get('/add/:word/:score', addWord);// "colon" indicates that "add" is the route and what follows is given by the user
+app.get('/add/:word/:score?', addWord);// "colon" indicates that "add" is the route and what follows is given by the user
 
 
 function addWord(request, response){
     var data = request.params;
     var word = data.word;
     var score = Number(data.score);
+    var reply;
+    if (!score){
+         reply={
+            msg: "Score is required."
+        }
+    }else{
 
     words[word]=score;
 
-    var reply = {
+         reply = {
         msg: "Thank you for your word."
     }
+    }
+
 
     response.send(reply)
 }
