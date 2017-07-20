@@ -46,7 +46,29 @@ function addWord(request, response){
     response.send(reply)
 }
 
- app.get("/all", sendall);
- function sendall(request, response){
+ app.get("/all", sendAll);
+ function sendAll(request, response){
      response.send(words)
+ }
+
+ // SEARCH 
+ app.get("/search/:word/", searchWord);
+
+ function searchWord(request, response){
+     var word = request.params.word;
+     var reply;
+     if (words[word]){
+         reply={
+             status: "found",
+             word: word,
+             score: words[word]
+         }
+     }else{
+         reply = {
+             status: "not found",
+             word: word
+         }
+     }
+    
+     response.send(reply)
  }
