@@ -32,9 +32,13 @@ function addWord(request, response){
             msg: "Score is required."
         }
     }else{
-
     words[word]=score;
+    var data =JSON.stringify(words, null, 2)
+    fs.writeFile("words.json", data, finished);
 
+    function finished(err){
+        console.log("all set.");
+    }
          reply = {
         msg: "Thank you for your word."
     }
