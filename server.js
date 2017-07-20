@@ -27,7 +27,7 @@ app.get('/add/:word/:score', addWord);// "colon" indicates that "add" is the rou
 function addWord(request, response){
     var data = request.params;
     var word = data.word;
-    var score = data.score;
+    var score = Number(data.score);
 
     words[word]=score;
 
