@@ -1,3 +1,8 @@
+var words = {
+    "rainbow": 5,
+    "unicorn": 3,
+    "doom": -3
+}
 console.log("server is starting");
 
 var express = require("express");
