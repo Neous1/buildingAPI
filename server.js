@@ -48,9 +48,6 @@ function addWord(request, response){
     }
 
     }
-
-
-
 }
 
  app.get("/all", sendAll);
